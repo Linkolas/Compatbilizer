@@ -41,6 +41,7 @@
             this.NomUtilisateur = new System.Windows.Forms.Label();
             this.Avatar = new System.Windows.Forms.PictureBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.FacContainerPanel = new System.Windows.Forms.Panel();
             this.rightPanelContainer.SuspendLayout();
             this.dashMenuBarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
@@ -183,10 +184,24 @@
             this.Avatar.TabIndex = 0;
             this.Avatar.TabStop = false;
             // 
+            // FacContainerPanel
+            // 
+            this.FacContainerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FacContainerPanel.Location = new System.Drawing.Point(360, 117);
+            this.FacContainerPanel.Name = "FacContainerPanel";
+            this.FacContainerPanel.Size = new System.Drawing.Size(920, 603);
+            this.FacContainerPanel.TabIndex = 2;
+            this.FacContainerPanel.AutoScroll = false;
+            this.FacContainerPanel.HorizontalScroll.Enabled = false;
+            this.FacContainerPanel.HorizontalScroll.Visible = false;
+            this.FacContainerPanel.HorizontalScroll.Maximum = 0;
+            this.FacContainerPanel.AutoScroll = true;
+            // 
             // dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.FacContainerPanel);
             this.Controls.Add(this.ToolMenuPanel);
             this.Controls.Add(this.rightPanelContainer);
             this.Name = "dashboard";
@@ -220,5 +235,6 @@
         private System.Windows.Forms.PictureBox settingsButton;
         private System.Windows.Forms.Label NomUtilisateur;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Panel FacContainerPanel;
     }
 }

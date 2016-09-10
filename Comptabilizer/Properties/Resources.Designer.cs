@@ -63,6 +63,16 @@ namespace Comptabilizer.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _checked {
+            get {
+                object obj = ResourceManager.GetObject("_checked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add {
             get {
                 object obj = ResourceManager.GetObject("add", resourceCulture);
