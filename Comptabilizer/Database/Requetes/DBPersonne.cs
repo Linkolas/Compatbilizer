@@ -13,7 +13,9 @@ namespace Comptabilizer.Database.Requetes {
     class DBPersonne : DB_Base<Personne> {
 		private const string PASSWD_NOT_SET = "NOT_SET";
 
-		public DBPersonne(string table) : base(table) {}
+		public DBPersonne() {
+			this.Table = "personne";
+		}
 
 		#region DB_Base implementation
 		/// <summary>

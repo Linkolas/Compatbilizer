@@ -10,7 +10,19 @@ namespace Comptabilizer {
     static class MySQL {
         
         static public DBPersonne Personne {
-            get { return new DBPersonne("personne"); }
+            get { return new DBPersonne(); }
         }
-    }
+
+		static public DBFacture Facture {
+			get { return new DBFacture(); }
+		}
+
+		static public DBMagouille Magouille {
+			get { return new DBMagouille(); }
+		}
+
+		static public DBLog Log {
+			get { return new DBLog(); }
+		}
+	}
 }

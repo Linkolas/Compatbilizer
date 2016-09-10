@@ -10,10 +10,6 @@ using System.Threading.Tasks;
 namespace Comptabilizer.Database.Requetes {
     abstract class DB_Base<T> {
 
-        public DB_Base(string table) {
-            this.Table = table;
-        }
-
         #region Abstract methods
         public abstract T get(int id);
         public abstract List<T> getAll();
@@ -39,11 +35,11 @@ namespace Comptabilizer.Database.Requetes {
             get { return prefix; }
         }
 
-        #endregion
+		#endregion
 
-        #region Table Settings
-        /// <summary>Don't use this value. Use TABLE instead.</summary>
-        private string Table = "";
+		#region Table Settings
+		/// <summary>Don't use this value. Use TABLE instead.</summary>
+		protected string Table = "";
 
         /// <summary>Récupère le nom de la table en cours.</summary>
         protected string TABLE {

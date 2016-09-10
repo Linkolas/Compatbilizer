@@ -9,7 +9,9 @@ namespace Comptabilizer.Database.Requetes
 {
     class DBMagouille : DB_Base<Magouille>
     {
-        public DBMagouille(string table) : base(table) { }
+        public DBMagouille() {
+			this.Table = "magouille";
+		}
 
         public override int add(Magouille obj)
         {

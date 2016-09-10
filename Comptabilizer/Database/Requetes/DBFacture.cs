@@ -9,7 +9,9 @@ namespace Comptabilizer.Database.Requetes
 {
     class DBFacture : DB_Base<Facture>
     {
-        public DBFacture(string table) : base(table) { }
+        public DBFacture() {
+			this.Table = "facture";
+		}
 
         public override int add(Facture obj)
         {

@@ -69,6 +69,7 @@
     <Compile Include="Database\Objets\Log.cs" />
     <Compile Include="Database\Objets\Magouille.cs" />
     <Compile Include="Database\Requetes\DBFacture.cs" />
+    <Compile Include="Database\Requetes\DBLog.cs" />
     <Compile Include="Database\Requetes\DBMagouille.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
