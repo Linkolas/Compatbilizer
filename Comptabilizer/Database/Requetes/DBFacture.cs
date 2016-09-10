@@ -77,7 +77,7 @@ namespace Comptabilizer.Database.Requetes
 
 			string requete =
 				  "SELECT * "
-				+ "FROM " + TABLE + " ";
+				+ "FROM " + TABLE;
 
 			DataTable dt = SELECT(requete);
 			if (dt.Rows.Count < 1) {
@@ -112,6 +112,59 @@ namespace Comptabilizer.Database.Requetes
 
 			return (rows == 1);
 		}
+		#endregion
+
+		#region Custom requests
+
+		#region Participants
+		public Dictionary<int, bool> Participant_getAll(int id_facture) {
+			Dictionary<int, bool> vs = new Dictionary<int, bool>();
+			
+			string requete =
+				  "SELECT * "
+				+ "FROM " + PREFIX + "facture_personne "
+				+ "WHERE id_facture = " + id_facture;
+
+			DataTable dt = SELECT(requete);
+			if (dt.Rows.Count < 1) {
+				return vs;
+			}
+
+			foreach (DataRow Row in dt.Rows) {
+				int id = (int) Row["id_payeur"];
+				bool val = ((sbyte) Row["valide"] != 0);
+				vs.Add(id, val);
+			}
+
+			return vs;
+		}
+
+		public bool Participant_add(int id_facture, int id_participant, bool validation = false) {
+			string requete = 
+					  "INSERT INTO " + (PREFIX + "facture_personne") + " VALUES ("
+					+ id_facture + ", "
+					+ id_participant + ", "
+					+ (validation ? 1 : 0)
+					+ ")";
+
+			int rows = MODIFY(requete);
+
+			return (rows == 1);
+		}
+
+		public bool Participant_set(int id_facture, int id_participant, bool validation) {
+			string requete =
+					  "UPDATE " + TABLE + " SET "
+					+ "valide = " + (validation ? "1" : "0") + " "
+					+ "WHERE id_facture = " + id_facture + " "
+					+ "AND id_payeur = " + id_participant;
+
+			int rows = MODIFY(requete);
+
+			return (rows == 1);
+		}
+		#endregion
+
 		#endregion
 
 		#region Utility functions
