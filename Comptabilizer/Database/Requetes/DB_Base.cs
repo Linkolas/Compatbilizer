@@ -53,7 +53,7 @@ namespace Comptabilizer.Database.Requetes {
 
         #region Shared methods
         /// <summary>
-        /// Exécute une requête (pensé pour des requêtes de type SELECT).
+        /// Exécute une requête de sélection (SELECT).
         /// </summary>
         /// <param name="cmd">Commande à éxécuter.</param>
         /// <returns>DataTable contenant les résultats (vide en cas d'erreur).</returns>
@@ -65,15 +65,14 @@ namespace Comptabilizer.Database.Requetes {
             try {
                 connection = Connection;
                 connection.Open();
-                if(connection.State != ConnectionState.Open) {
-                    return dt;
+
+                if (connection.State == ConnectionState.Open) {
+                    cmd.Connection = connection;
+                    reader = cmd.ExecuteReader();
+
+                    dt = new DataTable();
+                    dt.Load(reader);
                 }
-
-                cmd.Connection = connection;
-                reader = cmd.ExecuteReader();
-
-                dt = new DataTable();
-                dt.Load(reader);
 
             } catch (MySqlException e) {
                 Debug.WriteLine(e.Message);
@@ -93,7 +92,7 @@ namespace Comptabilizer.Database.Requetes {
         }
 
         /// <summary>
-        /// Exécute une requête (pensé pour des requêtes de type SELECT).
+        /// Exécute une requête de sélection (SELECT).
         /// </summary>
         /// <param name="cmd">Commande à éxécuter.</param>
         /// <returns>DataTable contenant les résultats (vide en cas d'erreur).</returns>
@@ -101,6 +100,89 @@ namespace Comptabilizer.Database.Requetes {
             MySqlCommand commande = new MySqlCommand(cmd);
             return SELECT(commande);
         }
+
+        /// <summary>
+        /// Exécute une requête de modification.
+        /// </summary>
+        /// <param name="cmd">Commande à éxécuter.</param>
+        /// <returns>Le nombre de lignes affectées.</returns>
+        protected int MODIFY(MySqlCommand cmd) {
+            MySqlConnection connection = null;
+            int retour = -1;
+
+            try {
+                connection = Connection;
+                connection.Open();
+
+                if (connection.State == ConnectionState.Open) {
+                    cmd.Connection = connection;
+                    retour = cmd.ExecuteNonQuery();
+                }
+
+            } catch (MySqlException e) {
+                Debug.WriteLine(e.Message);
+                Debug.WriteLine("Erreur SQL no " + e.Number.ToString());
+
+            } finally {
+                if (connection != null) {
+                    connection.Close();
+                }
+            }
+
+            return retour;
+        }
+
+        /// <summary>
+        /// Exécute une requête de modification.
+        /// </summary>
+        /// <param name="cmd">Commande à éxécuter.</param>
+        /// <returns>Le nombre de lignes affectées.</returns>
+        protected int MODIFY(string cmd) {
+            MySqlCommand commande = new MySqlCommand(cmd);
+            return MODIFY(commande);
+        }
+
+		/// <summary>
+		/// Exécute une requête d'insertion.
+		/// </summary>
+		/// <param name="cmd">Commande à éxécuter.</param>
+		/// <returns>L'ID de l'insertion.</returns>
+		protected int INSERT(MySqlCommand cmd) {
+			MySqlConnection connection = null;
+			int id = -1;
+
+			try {
+				connection = Connection;
+				connection.Open();
+
+				if (connection.State == ConnectionState.Open) {
+					cmd.Connection = connection;
+					cmd.ExecuteNonQuery();
+					id = (int) cmd.LastInsertedId;
+				}
+
+			} catch (MySqlException e) {
+				Debug.WriteLine(e.Message);
+				Debug.WriteLine("Erreur SQL no " + e.Number.ToString());
+
+			} finally {
+				if (connection != null) {
+					connection.Close();
+				}
+			}
+
+			return id;
+		}
+		
+		/// <summary>
+		/// Exécute une requête d'insertion.
+		/// </summary>
+		/// <param name="cmd">Commande à éxécuter.</param>
+		/// <returns>L'ID de l'insertion.</returns>
+		protected int INSERT(string cmd) {
+			MySqlCommand commande = new MySqlCommand(cmd);
+			return INSERT(commande);
+		}
         #endregion
     }
 }
