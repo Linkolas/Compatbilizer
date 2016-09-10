@@ -66,6 +66,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Objets\Facture.cs" />
+    <Compile Include="Database\Objets\Log.cs" />
+    <Compile Include="Database\Objets\Magouille.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="view\component\dashboard.cs">
