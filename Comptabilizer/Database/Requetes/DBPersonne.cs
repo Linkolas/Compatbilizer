@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Comptabilizer.Database.Requetes {
-    class DBPersonne : DB_Base {
+    class DBPersonne : DB_Base<Personne> {
         public DBPersonne(string table) : base(table) {}
 
         /// <summary>
@@ -17,11 +17,11 @@ namespace Comptabilizer.Database.Requetes {
         /// </summary>
         /// <param name="id">ID de la personne recherchée.</param>
         /// <returns>Objet Personne contenant toutes ses infos. En cas d'erreur, en personne ayant un ID négatif.</returns>
-        public Personne get(int id) {
+        public override Personne get(int id) {
             Personne p = new Personne() { id = -1 };
             
             string requete =
-                 "SELECT * "
+                  "SELECT * "
                 + "FROM " + TABLE + " "
                 + "WHERE id = " + id + ";";
             
@@ -45,7 +45,7 @@ namespace Comptabilizer.Database.Requetes {
         /// <param name="ID">ID de la personne à modifier.</param>
         /// <param name="modified">Objet Personne contenant les nouvelles infos.</param>
         /// <returns>True si la modif s'est bien passée, false sinon.</returns>
-        public bool set(int ID, Personne modified) {
+        public override bool set(int ID, Personne modified) {
             return false;
         }
 
@@ -54,7 +54,7 @@ namespace Comptabilizer.Database.Requetes {
         /// </summary>
         /// <param name="newPerson">Objet Personne contenant les infos. Si l'ID est négatif, en génère un.</param>
         /// <returns>L'ID de la personne ajoutée. En cas d'erreur, retourne -1.</returns>
-        public int add(Personne newPerson) {
+        public override int add(Personne newPerson) {
             return -1;
         }
 
@@ -63,8 +63,38 @@ namespace Comptabilizer.Database.Requetes {
         /// </summary>
         /// <param name="id">ID de la personne à supprimer.</param>
         /// <returns>True si la modif s'est bien passée, false sinon.</returns>
-        public bool del(int id) {
+        public override bool del(int id) {
             return false;
+        }
+
+        /// <summary>
+        /// Récupère toutes les personnes de la BDD.
+        /// </summary>
+        /// <returns>Une List contenant les personnes.</returns>
+        public override List<Personne> getAll() {
+            List<Personne> ps = new List<Personne>();
+
+            string requete =
+                  "SELECT * "
+                + "FROM " + TABLE + " ";
+
+            DataTable dt = SELECT(requete);
+            if (dt.Rows.Count < 1) {
+                return ps;
+            }
+
+            foreach(DataRow Row in dt.Rows) {
+                Personne p = new Personne();
+                p.nom = (string) Row["nom"];
+                p.pseudo = (string) Row["pseudo"];
+                p.avatar = (string) Row["avatar"];
+                p.habituel = ((sbyte) Row["habituel"] != 0);
+                p.id = (int) Row["id"];
+
+                ps.Add(p);
+            }
+
+            return ps;
         }
     }
 }

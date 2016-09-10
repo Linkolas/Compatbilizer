@@ -8,11 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Comptabilizer.Database.Requetes {
-    abstract class DB_Base {
+    abstract class DB_Base<T> {
 
         public DB_Base(string table) {
             this.Table = table;
         }
+
+        #region Abstract methods
+        public abstract T get(int id);
+        public abstract List<T> getAll();
+        public abstract bool set(int id, T obj);
+        public abstract int add(T obj);
+        public abstract bool del(int id);
+        #endregion
 
         #region Global Settings
         /// <summary>Chaîne de connexion à la base SQL.</summary>
@@ -43,6 +51,7 @@ namespace Comptabilizer.Database.Requetes {
         }
         #endregion
 
+        #region Shared methods
         /// <summary>
         /// Exécute une requête (pensé pour des requêtes de type SELECT).
         /// </summary>
@@ -92,5 +101,6 @@ namespace Comptabilizer.Database.Requetes {
             MySqlCommand commande = new MySqlCommand(cmd);
             return SELECT(commande);
         }
+        #endregion
     }
 }
