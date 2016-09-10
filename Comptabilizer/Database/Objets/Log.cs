@@ -9,8 +9,8 @@ namespace Comptabilizer.Database.Objets
     class Log
     {
         public int id = -1;
-        public int id_personne;
-        public DateTime date;
-        public string libelle;
+        public int id_personne = -1;
+        public DateTime date = DateTime.Now;
+        public string libelle = "";
     }
 }

@@ -8,9 +8,9 @@ namespace Comptabilizer.Database.Objets
 {
     class Facture {
         public int id = -1;
-        public int id_payeur;
-        public float valeur;
-        public DateTime date;
-        public string libelle;
+        public int id_payeur = -1;
+        public float valeur = -1;
+        public DateTime date = DateTime.Now;
+        public string libelle = "";
     }
 }
