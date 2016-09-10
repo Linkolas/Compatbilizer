@@ -1,6 +1,8 @@
-﻿using Comptabilizer.view.form;
+﻿using Comptabilizer.Database.Objets;
+using Comptabilizer.view.form;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;

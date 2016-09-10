@@ -10,7 +10,7 @@ namespace Comptabilizer {
     static class MySQL {
         
         static public DBPersonne Personne {
-            get { return new DBPersonne(); }
+            get { return new DBPersonne("personne"); }
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,13 @@ using System.Threading.Tasks;
 namespace Comptabilizer.Database.Requetes {
     abstract class DB_Base {
 
+        public DB_Base(string table) {
+            this.Table = table;
+        }
+
         #region Global Settings
         /// <summary>Chaîne de connexion à la base SQL.</summary>
-        private string sql_connectstring = @"server=localhost;user id=root;persistsecurityinfo=True;database=compta";
+        private string sql_connectstring = @"server=localhost; uid=root; pwd=; database=compta; port=3306";
         
         /// <summary>Préfixe des tables en BDD</summary>
         private string prefix = "compta_";
@@ -30,7 +35,7 @@ namespace Comptabilizer.Database.Requetes {
 
         #region Table Settings
         /// <summary>Don't use this value. Use TABLE instead.</summary>
-        protected string Table = "";
+        private string Table = "";
 
         /// <summary>Récupère le nom de la table en cours.</summary>
         protected string TABLE {
@@ -51,12 +56,19 @@ namespace Comptabilizer.Database.Requetes {
             try {
                 connection = Connection;
                 connection.Open();
-                
+                if(connection.State != ConnectionState.Open) {
+                    return dt;
+                }
+
+                cmd.Connection = connection;
                 reader = cmd.ExecuteReader();
 
                 dt = new DataTable();
                 dt.Load(reader);
-            } catch {
+
+            } catch (MySqlException e) {
+                Debug.WriteLine(e.Message);
+                Debug.WriteLine("Erreur SQL no " + e.Number.ToString());
 
             } finally {
                 if (reader != null) {

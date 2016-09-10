@@ -3,13 +3,14 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Comptabilizer.Database.Requetes {
     class DBPersonne : DB_Base {
-        private new string Table = "personne";
+        public DBPersonne(string table) : base(table) {}
 
         /// <summary>
         /// Récupère une personne de la BDD.
@@ -22,8 +23,8 @@ namespace Comptabilizer.Database.Requetes {
             string requete =
                  "SELECT * "
                 + "FROM " + TABLE + " "
-                + "WHERE id = " + id;
-
+                + "WHERE id = " + id + ";";
+            
             DataTable dt = SELECT(requete);
             if (dt.Rows.Count != 1) {
                 return p;
@@ -32,7 +33,7 @@ namespace Comptabilizer.Database.Requetes {
             p.nom = (string)    dt.Rows[0]["nom"];
             p.pseudo = (string) dt.Rows[0]["pseudo"];
             p.avatar = (string) dt.Rows[0]["avatar"];
-            p.habituel = ((int) dt.Rows[0]["habituel"] != 0);
+            p.habituel = ((sbyte) dt.Rows[0]["habituel"] != 0);
             p.id = (int)        dt.Rows[0]["id"];
 
             return p;
