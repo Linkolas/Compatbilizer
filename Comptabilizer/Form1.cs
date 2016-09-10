@@ -14,6 +14,7 @@ namespace Comptabilizer
     {
         public Form1()
         {
+            // Some comments
             InitializeComponent();
         }
     }
