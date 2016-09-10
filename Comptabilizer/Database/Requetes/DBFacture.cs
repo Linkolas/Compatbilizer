@@ -27,7 +27,7 @@ namespace Comptabilizer.Database.Requetes
 					+ "\"" + f.libelle + "\" "
 					+ ")";
 			} else {
-				requete = "INSERT INTO " + TABLE + " VALUES ("
+				requete = "INSERT INTO " + TABLE + " (id_payeur, valeur_totale, ddate, libelle) VALUES ("
 					+ f.id_payeur + ", "
 					+ f.valeur + ", "
 					+ DateTimeToTimestamp(f.date) + ", "

@@ -10,7 +10,7 @@ namespace Comptabilizer.Database.Objets
     {
         public int id = -1;
         public int id_facture = -1;
-        public int id_payeur = -1;
+        public int id_beneficiaire = -1;
         public float valeur = -1;
         public string libelle = "";
     }
