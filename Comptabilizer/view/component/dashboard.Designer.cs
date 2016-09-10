@@ -191,6 +191,11 @@
             this.FacContainerPanel.Name = "FacContainerPanel";
             this.FacContainerPanel.Size = new System.Drawing.Size(920, 603);
             this.FacContainerPanel.TabIndex = 2;
+            this.FacContainerPanel.AutoScroll = false;
+            this.FacContainerPanel.HorizontalScroll.Enabled = false;
+            this.FacContainerPanel.HorizontalScroll.Visible = false;
+            this.FacContainerPanel.HorizontalScroll.Maximum = 0;
+            this.FacContainerPanel.AutoScroll = true;
             // 
             // dashboard
             // 
