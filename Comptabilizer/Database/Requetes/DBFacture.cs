@@ -1,6 +1,7 @@
 ﻿using Comptabilizer.Database.Objets;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,29 +14,117 @@ namespace Comptabilizer.Database.Requetes
 			this.Table = "facture";
 		}
 
-        public override int add(Facture obj)
+		#region DB_Base implementation
+		public override int add(Facture f)
         {
-            throw new NotImplementedException();
-        }
+			string requete = "";
+			if (f.id >= 0) {
+				requete = "INSERT INTO " + TABLE + " VALUES ("
+					+ f.id + ", "
+					+ f.id_payeur + ", "
+					+ f.valeur + ", "
+					+ DateTimeToTimestamp(f.date) + ", "
+					+ "\"" + f.libelle + "\" "
+					+ ")";
+			} else {
+				requete = "INSERT INTO " + TABLE + " VALUES ("
+					+ f.id_payeur + ", "
+					+ f.valeur + ", "
+					+ DateTimeToTimestamp(f.date) + ", "
+					+ "\"" + f.libelle + "\" "
+					+ ")";
+			}
 
-        public override bool del(int id)
-        {
-            throw new NotImplementedException();
-        }
+			int id = INSERT(requete);
 
-        public override Facture get(int id)
-        {
-            throw new NotImplementedException();
-        }
+			return id;
+		}
 
-        public override List<Facture> getAll()
-        {
-            throw new NotImplementedException();
-        }
+        public override bool del(int id) {
+			string requete =
+				  "DELETE FROM " + TABLE + " "
+				+ "WHERE id = " + id;
 
-        public override bool set(int id, Facture obj)
-        {
-            throw new NotImplementedException();
-        }
-    }
+			int rows = MODIFY(requete);
+
+			return (rows == 1);
+		}
+
+        public override Facture get(int id) {
+			Facture f = new Facture() { id = -1 };
+
+			string requete =
+				  "SELECT * "
+				+ "FROM " + TABLE + " "
+				+ "WHERE id = " + id;
+
+			DataTable dt = SELECT(requete);
+			if (dt.Rows.Count != 1) {
+				return f;
+			}
+
+			f.id_payeur = (int) dt.Rows[0]["id_payeur"];
+			f.valeur = (float) dt.Rows[0]["valeur_totale"];
+			f.date = TimestampToDateTime((double) dt.Rows[0]["ddate"]);
+			f.libelle = (string) dt.Rows[0]["libelle"];
+			f.id = (int) dt.Rows[0]["id"];
+
+			return f;
+		}
+
+        public override List<Facture> getAll() {
+			List<Facture> ps = new List<Facture>();
+
+			string requete =
+				  "SELECT * "
+				+ "FROM " + TABLE + " ";
+
+			DataTable dt = SELECT(requete);
+			if (dt.Rows.Count < 1) {
+				return ps;
+			}
+
+			foreach (DataRow Row in dt.Rows) {
+				Facture f = new Facture();
+				f.id_payeur = (int) Row["id_payeur"];
+				f.valeur = (float) Row["valeur_totale"];
+				f.date = TimestampToDateTime((double) Row["ddate"]);
+				f.libelle = (string) Row["libelle"];
+				f.id = (int) Row["id"];
+
+				ps.Add(f);
+			}
+
+			return ps;
+		}
+
+        public override bool set(int id, Facture f) {
+			string requete =
+					  "UPDATE " + TABLE + " SET "
+					+ "id = " + f.id + ", "
+					+ "id_payeur = " + f.id_payeur + ", "
+					+ "valeur_totale = " + f.valeur + ", "
+					+ "ddate = " + DateTimeToTimestamp(f.date) + ", "
+					+ "libelle = \"" + f.libelle + "\" "
+					+ "WHERE id = " + id;
+
+			int rows = MODIFY(requete);
+
+			return (rows == 1);
+		}
+		#endregion
+
+		#region Utility functions
+		private long DateTimeToTimestamp(DateTime dt) {
+			long epoch = (dt.Ticks - 621355968000000000) / 10000000;
+			return epoch;
+		}
+
+		private DateTime TimestampToDateTime(double timestamp) {
+			DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+			dtDateTime = dtDateTime.AddSeconds(timestamp).ToLocalTime();
+			return dtDateTime;
+		}
+		#endregion
+	}
 }
