@@ -74,6 +74,7 @@
     <Compile Include="Database\Requetes\DBMagouille.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="utils\Tests.cs" />
     <Compile Include="view\component\dashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
