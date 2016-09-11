@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.userBox = new System.Windows.Forms.TextBox();
+			this.passwordBox = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
@@ -48,21 +48,21 @@
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
 			// 
-			// textBox1
+			// userBox
 			// 
-			this.textBox1.Location = new System.Drawing.Point(100, 200);
-			this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(135, 20);
-			this.textBox1.TabIndex = 1;
+			this.userBox.Location = new System.Drawing.Point(100, 200);
+			this.userBox.Margin = new System.Windows.Forms.Padding(2);
+			this.userBox.Name = "userBox";
+			this.userBox.Size = new System.Drawing.Size(135, 20);
+			this.userBox.TabIndex = 1;
 			// 
-			// textBox2
+			// passwordBox
 			// 
-			this.textBox2.Location = new System.Drawing.Point(100, 244);
-			this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(135, 20);
-			this.textBox2.TabIndex = 2;
+			this.passwordBox.Location = new System.Drawing.Point(100, 244);
+			this.passwordBox.Margin = new System.Windows.Forms.Padding(2);
+			this.passwordBox.Name = "passwordBox";
+			this.passwordBox.Size = new System.Drawing.Size(135, 20);
+			this.passwordBox.TabIndex = 2;
 			// 
 			// label1
 			// 
@@ -105,8 +105,8 @@
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.textBox2);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.passwordBox);
+			this.Controls.Add(this.userBox);
 			this.Controls.Add(this.pictureBox1);
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "Login";
@@ -120,8 +120,8 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox userBox;
+        private System.Windows.Forms.TextBox passwordBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;

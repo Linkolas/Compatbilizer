@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Comptabilizer.Database.Objets {
-    class Personne {
+    public class Personne {
         public int id = -1;
         public string nom = "";
         public string avatar = "";
