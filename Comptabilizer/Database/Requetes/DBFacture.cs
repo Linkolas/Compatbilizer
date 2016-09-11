@@ -125,8 +125,19 @@ namespace Comptabilizer.Database.Requetes
 
 		public bool Participant_set(int id_facture, int id_participant, bool validation) {
 			string requete =
-					  "UPDATE " + TABLE + " SET "
+					  "UPDATE " + (PREFIX + "facture_personne") + " SET "
 					+ "valide = " + (validation ? "1" : "0") + " "
+					+ "WHERE id_facture = " + id_facture + " "
+					+ "AND id_personne = " + id_participant;
+
+			int rows = MODIFY(requete);
+
+			return (rows == 1);
+		}
+
+		public bool Participant_del(int id_facture, int id_participant) {
+			string requete =
+					  "DELETE FROM " + (PREFIX + "facture_personne") + " "
 					+ "WHERE id_facture = " + id_facture + " "
 					+ "AND id_personne = " + id_participant;
 
