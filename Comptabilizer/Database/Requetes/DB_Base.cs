@@ -31,7 +31,7 @@ namespace Comptabilizer.Database.Requetes {
 		}
 
 		/// <summary>Préfixe des tables en BDD</summary>
-		protected string PREFIX {
+		protected string PREFIX { 
 			get { return prefix; }
 		}
 
