@@ -68,6 +68,7 @@
     <Compile Include="Database\Objets\Facture.cs" />
     <Compile Include="Database\Objets\Log.cs" />
     <Compile Include="Database\Objets\Magouille.cs" />
+    <Compile Include="Database\Requetes\DB_Base.cs" />
     <Compile Include="Database\Requetes\DBFacture.cs" />
     <Compile Include="Database\Requetes\DBLog.cs" />
     <Compile Include="Database\Requetes\DBMagouille.cs" />
@@ -96,7 +97,6 @@
     </Compile>
     <Compile Include="Database\Objets\Personne.cs" />
     <Compile Include="Database\Requetes\DBPersonne.cs" />
-    <Compile Include="Database\Requetes\DB_Base.cs" />
     <Compile Include="view\form\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>

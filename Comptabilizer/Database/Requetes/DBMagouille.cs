@@ -15,6 +15,13 @@ namespace Comptabilizer.Database.Requetes
 		}
 
 		#region DB_Base implementation
+
+		/// <summary>
+		/// Ajoute un objet en BDD.
+		/// Si son ID est négatif, en génère un.
+		/// </summary>
+		/// <param name="f">Objet contenant les infos.</param>
+		/// <returns>L'ID de l'objet ajouté. En cas d'erreur, retourne -1.</returns>
 		public override int add(Magouille obj) {
 			string requete = "";
 			if (obj.id >= 0) {
@@ -39,65 +46,13 @@ namespace Comptabilizer.Database.Requetes
 			return id;
 		}
 
-        public override bool del(int id) {
-			string requete =
-				  "DELETE FROM " + TABLE + " "
-				+ "WHERE id = " + id;
-
-			int rows = MODIFY(requete);
-
-			return (rows == 1);
-		}
-
-        public override Magouille get(int id) {
-			Magouille p = new Magouille() { id = -1 };
-
-			string requete =
-				  "SELECT * "
-				+ "FROM " + TABLE + " "
-				+ "WHERE id = " + id;
-
-			DataTable dt = SELECT(requete);
-			if (dt.Rows.Count != 1) {
-				return p;
-			}
-
-			p.id_facture = (int) dt.Rows[0]["id_facture"];
-			p.id_beneficiaire = (int) dt.Rows[0]["id_beneficiaire"];
-			p.valeur = (float) dt.Rows[0]["valeur"];
-			p.libelle = (string) dt.Rows[0]["libelle"];
-			p.id = (int) dt.Rows[0]["id"];
-
-			return p;
-		}
-
-        public override List<Magouille> getAll() {
-			List<Magouille> ps = new List<Magouille>();
-
-			string requete =
-				  "SELECT * "
-				+ "FROM " + TABLE + " ";
-
-			DataTable dt = SELECT(requete);
-			if (dt.Rows.Count < 1) {
-				return ps;
-			}
-
-			foreach (DataRow Row in dt.Rows) {
-				Magouille p = new Magouille();
-				p.id_facture = (int) Row["id_facture"];
-				p.id_beneficiaire = (int) Row["id_beneficiaire"];
-				p.valeur = (float) Row["valeur"];
-				p.libelle = (string) Row["libelle"];
-				p.id = (int) Row["id"];
-
-				ps.Add(p);
-			}
-
-			return ps;
-		}
-		
-        public override bool set(int id, Magouille obj) {
+		/// <summary>
+		/// Modifie un objet en BDD.
+		/// </summary>
+		/// <param name="id">ID de l'objet à modifier.</param>
+		/// <param name="f">Objet contenant les nouvelles infos.</param>
+		/// <returns>True si la modif s'est bien passée, false sinon.</returns>
+		public override bool set(int id, Magouille obj) {
 			string requete =
 					  "UPDATE " + TABLE + " SET "
 					+ "id = " + obj.id + ", "
@@ -110,6 +65,27 @@ namespace Comptabilizer.Database.Requetes
 			int rows = MODIFY(requete);
 
 			return (rows == 1);
+		}
+
+		protected override Magouille DRowToObject(DataRow DRow) {
+			Magouille m = new Magouille();
+
+			m.id = (int) 
+				DRow["id"];
+			m.id_beneficiaire = (int) 
+				DRow["id_beneficiaire"];
+			m.id_facture = (int) 
+				DRow["id_facture"];
+			m.valeur = (float) 
+				DRow["valeur"];
+			m.libelle = (string) 
+				DRow["libelle"];
+
+			return m;
+		}
+
+		public override Magouille DefaultObject() {
+			return new Magouille();
 		}
 		#endregion
 

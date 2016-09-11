@@ -15,6 +15,13 @@ namespace Comptabilizer.Database.Requetes
 		}
 
 		#region DB_Base implementation
+
+		/// <summary>
+		/// Ajoute un objet en BDD.
+		/// Si son ID est négatif, en génère un.
+		/// </summary>
+		/// <param name="f">Objet contenant les infos.</param>
+		/// <returns>L'ID de l'objet ajouté. En cas d'erreur, retourne -1.</returns>
 		public override int add(Facture f)
         {
 			string requete = "";
@@ -39,66 +46,14 @@ namespace Comptabilizer.Database.Requetes
 
 			return id;
 		}
-
-        public override bool del(int id) {
-			string requete =
-				  "DELETE FROM " + TABLE + " "
-				+ "WHERE id = " + id;
-
-			int rows = MODIFY(requete);
-
-			return (rows == 1);
-		}
-
-        public override Facture get(int id) {
-			Facture f = new Facture() { id = -1 };
-
-			string requete =
-				  "SELECT * "
-				+ "FROM " + TABLE + " "
-				+ "WHERE id = " + id;
-
-			DataTable dt = SELECT(requete);
-			if (dt.Rows.Count != 1) {
-				return f;
-			}
-
-			f.id_payeur = (int) dt.Rows[0]["id_payeur"];
-			f.valeur = (float) dt.Rows[0]["valeur_totale"];
-			f.date = TimestampToDateTime((double) dt.Rows[0]["ddate"]);
-			f.libelle = (string) dt.Rows[0]["libelle"];
-			f.id = (int) dt.Rows[0]["id"];
-
-			return f;
-		}
-
-        public override List<Facture> getAll() {
-			List<Facture> ps = new List<Facture>();
-
-			string requete =
-				  "SELECT * "
-				+ "FROM " + TABLE;
-
-			DataTable dt = SELECT(requete);
-			if (dt.Rows.Count < 1) {
-				return ps;
-			}
-
-			foreach (DataRow Row in dt.Rows) {
-				Facture f = new Facture();
-				f.id_payeur = (int) Row["id_payeur"];
-				f.valeur = (float) Row["valeur_totale"];
-				f.date = TimestampToDateTime((double) Row["ddate"]);
-				f.libelle = (string) Row["libelle"];
-				f.id = (int) Row["id"];
-
-				ps.Add(f);
-			}
-
-			return ps;
-		}
-
-        public override bool set(int id, Facture f) {
+		
+		/// <summary>
+		/// Modifie un objet en BDD.
+		/// </summary>
+		/// <param name="id">ID de l'objet à modifier.</param>
+		/// <param name="f">Objet contenant les nouvelles infos.</param>
+		/// <returns>True si la modif s'est bien passée, false sinon.</returns>
+		public override bool set(int id, Facture f) {
 			string requete =
 					  "UPDATE " + TABLE + " SET "
 					+ "id = " + f.id + ", "
@@ -111,6 +66,22 @@ namespace Comptabilizer.Database.Requetes
 			int rows = MODIFY(requete);
 
 			return (rows == 1);
+		}
+		
+		protected override Facture DRowToObject(DataRow DRow) {
+			Facture f = new Facture();
+
+			f.id_payeur = (int) DRow["id_payeur"];
+			f.valeur = (float) DRow["valeur_totale"];
+			f.date = TimestampToDateTime((double) DRow["ddate"]);
+			f.libelle = (string) DRow["libelle"];
+			f.id = (int) DRow["id"];
+
+			return f;
+		}
+
+		public override Facture DefaultObject() {
+			return new Facture();
 		}
 		#endregion
 
@@ -131,7 +102,7 @@ namespace Comptabilizer.Database.Requetes
 			}
 
 			foreach (DataRow Row in dt.Rows) {
-				int id = (int) Row["id_payeur"];
+				int id = (int) Row["id_personne"];
 				bool val = ((sbyte) Row["valide"] != 0);
 				vs.Add(id, val);
 			}
@@ -157,7 +128,7 @@ namespace Comptabilizer.Database.Requetes
 					  "UPDATE " + TABLE + " SET "
 					+ "valide = " + (validation ? "1" : "0") + " "
 					+ "WHERE id_facture = " + id_facture + " "
-					+ "AND id_payeur = " + id_participant;
+					+ "AND id_personne = " + id_participant;
 
 			int rows = MODIFY(requete);
 
