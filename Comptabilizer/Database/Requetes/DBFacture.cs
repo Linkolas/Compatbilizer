@@ -88,6 +88,12 @@ namespace Comptabilizer.Database.Requetes
 		#region Custom requests
 
 		#region Participants
+
+		/// <summary>
+		/// Renvoie les validations pour une facture d'id donnée.
+		/// </summary>
+		/// <param name="id_facture"></param>
+		/// <returns>Tableau associatif : (int) ID_Personne -> (bool) EstValidé</returns>
 		public Dictionary<int, bool> Participant_getAll(int id_facture) {
 			Dictionary<int, bool> vs = new Dictionary<int, bool>();
 			
@@ -145,6 +151,59 @@ namespace Comptabilizer.Database.Requetes
 
 			return (rows == 1);
 		}
+		#endregion
+
+		#region Categories
+
+		/// <summary>
+		/// Renvoie les catégories pour une facture d'id donnée.
+		/// </summary>
+		/// <param name="id_facture"></param>
+		/// <returns>Liste d'ID de catégories</returns>
+		public List<int> Category_getAll(int id_facture) {
+			List<int> vs = new List<int>();
+
+			string requete =
+				  "SELECT * "
+				+ "FROM " + PREFIX + "facture_categorie "
+				+ "WHERE id_facture = " + id_facture;
+
+			DataTable dt = SELECT(requete);
+			if (dt.Rows.Count < 1) {
+				return vs;
+			}
+
+			foreach (DataRow Row in dt.Rows) {
+				int id = (int) Row["id_categorie"];
+				vs.Add(id);
+			}
+
+			return vs;
+		}
+
+		public bool Category_add(int id_facture, int id_category) {
+			string requete =
+					  "INSERT INTO " + (PREFIX + "facture_categorie") + " VALUES ("
+					+ id_facture + ", "
+					+ id_category
+					+ ")";
+
+			int rows = MODIFY(requete);
+
+			return (rows == 1);
+		}
+
+		public bool Category_del(int id_facture, int id_category) {
+			string requete =
+					  "DELETE FROM " + (PREFIX + "facture_categorie") + " "
+					+ "WHERE id_facture = " + id_facture + " "
+					+ "AND id_category = " + id_category;
+
+			int rows = MODIFY(requete);
+
+			return (rows == 1);
+		}
+
 		#endregion
 
 		#endregion

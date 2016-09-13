@@ -65,9 +65,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\Objets\Categorie.cs" />
     <Compile Include="Database\Objets\Facture.cs" />
     <Compile Include="Database\Objets\Log.cs" />
     <Compile Include="Database\Objets\Magouille.cs" />
+    <Compile Include="Database\Requetes\DBCategories.cs" />
     <Compile Include="Database\Requetes\DB_Base.cs" />
     <Compile Include="Database\Requetes\DBFacture.cs" />
     <Compile Include="Database\Requetes\DBLog.cs" />
