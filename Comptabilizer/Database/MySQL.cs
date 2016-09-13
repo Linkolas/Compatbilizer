@@ -24,5 +24,9 @@ namespace Comptabilizer {
 		static public DBLog Log {
 			get { return new DBLog(); }
 		}
+
+		static public DBCategories Categorie {
+			get { return new DBCategories(); }
+		}
 	}
 }
