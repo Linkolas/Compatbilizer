@@ -204,12 +204,32 @@ namespace Comptabilizer.Database.Requetes
 			return (rows == 1);
 		}
 
-		#endregion
+        #endregion
 
-		#endregion
+        /// <summary>
+        /// Récupère toutes les factures d'une Personne
+        /// </summary>
+        /// <returns>List d'objets</returns>
+        public List<Facture> getAllFromPerson(Personne p)
+        {
+            string requete =
+                  "SELECT * "
+                + "FROM " + TABLE + " " 
+                + "WHERE id_payeur=" + p.id + " ";
 
-		#region Utility functions
-		private long DateTimeToTimestamp(DateTime dt) {
+            DataTable dt = SELECT(requete);
+            if (dt.Rows.Count < 1)
+            {
+                return new List<Facture>();
+            }
+
+            return DTableToList(dt);
+        }
+
+        #endregion
+
+        #region Utility functions
+        private long DateTimeToTimestamp(DateTime dt) {
 			long epoch = (dt.Ticks - 621355968000000000) / 10000000;
 			return epoch;
 		}

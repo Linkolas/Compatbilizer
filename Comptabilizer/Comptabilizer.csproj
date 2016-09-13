@@ -76,6 +76,7 @@
     <Compile Include="Database\Requetes\DBMagouille.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="utils\Avatar.cs" />
     <Compile Include="utils\Session.cs" />
     <Compile Include="utils\Tests.cs" />
     <Compile Include="view\component\dashboard.cs">
@@ -179,6 +180,57 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boy-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boy-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boy-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boy-4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boy-5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\girl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\girl-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\girl-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\girl-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\girl-4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\girl-5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\girl-6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\girl-7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\man.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\man-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checked_warning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

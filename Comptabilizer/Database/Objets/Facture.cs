@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Comptabilizer.Database.Objets
 {
-    class Facture {
+    public class Facture {
         public int id = -1;
         public int id_payeur = -1;
         public float valeur = -1;

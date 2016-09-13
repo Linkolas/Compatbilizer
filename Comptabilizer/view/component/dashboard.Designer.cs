@@ -80,7 +80,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(360, 603);
             this.flowLayoutPanel1.TabIndex = 1;
-            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // dashMenuBarPanel
             // 
@@ -186,16 +185,12 @@
             // 
             // FacContainerPanel
             // 
+            this.FacContainerPanel.AutoScroll = true;
             this.FacContainerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FacContainerPanel.Location = new System.Drawing.Point(360, 117);
             this.FacContainerPanel.Name = "FacContainerPanel";
             this.FacContainerPanel.Size = new System.Drawing.Size(920, 603);
             this.FacContainerPanel.TabIndex = 2;
-            this.FacContainerPanel.AutoScroll = false;
-            this.FacContainerPanel.HorizontalScroll.Enabled = false;
-            this.FacContainerPanel.HorizontalScroll.Visible = false;
-            this.FacContainerPanel.HorizontalScroll.Maximum = 0;
-            this.FacContainerPanel.AutoScroll = true;
             // 
             // dashboard
             // 

@@ -27,14 +27,9 @@ namespace Comptabilizer.view.form
 		/// </summary>
 		/// <param name="p"></param>
 		internal void LoadData(Personne p) {
-			// ... On charge les données...
-			// ... On charge les données...
-			// ... On charge les données...
-			// ... On charge les données...
-			// ... On charge les données...
-			
-			// On envoie l'évènement.
-			InitialDataLoaded();
+            dashboard1.loadFactures();
+
+            InitialDataLoaded();
 		}
 	}
 }

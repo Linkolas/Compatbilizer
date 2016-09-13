@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Comptabilizer.Database.Objets
 {
-    class Log
+    public class Log
     {
         public int id = -1;
         public int id_personne = -1;

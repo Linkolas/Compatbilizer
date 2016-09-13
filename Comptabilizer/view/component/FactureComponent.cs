@@ -7,15 +7,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Comptabilizer.Database.Objets;
+using Comptabilizer.utils;
 
 namespace Comptabilizer.view.component
 {
     public partial class FactureComponent : UserControl
     {
+        private Facture f = null;
+
         public FactureComponent()
         {
             InitializeComponent();
         }
+
+        #region ACCESSEURS
+
+        /// <summary>
+        /// Attribue ou retourne une Facture
+        /// </summary>
+        public Facture facture
+        {
+            get { return this.f; }
+            set { if (value != null) this.f = value; this.updateForm(this.f); }
+        }
+
+        #endregion
+
+        #region Updateur
+
+        //TODO MISE A JOUR AUTOMATIQUE DES FACTURES
+        //public delegate void FactureValueChanged(object sender, EventArgs e);
+        //public event FactureValueChanged fvc;
+        
+        private void updateForm(Facture f)
+        {
+            this.Value.Text = f.valeur.ToString() + "€";
+            this.FacName.Text = f.libelle + " | " + f.date.ToString();
+            this.Avatar_Owner.Image = Avatar.image(Session.Utilisateur.avatar); // A optimiser
+
+            bool lUtilisateurAPAyeSapart = false;
+            bool ToutleMondeApayer = true;
+            foreach (KeyValuePair<int, bool> entry in MySQL.Facture.Participant_getAll(f.id))
+            {
+                if (entry.Key == Session.Utilisateur.id && entry.Value == true)
+                    lUtilisateurAPAyeSapart = true;
+                if (entry.Value == false)
+                    ToutleMondeApayer = false;
+            }
+            if (ToutleMondeApayer) this.pictureBox1.Image = Properties.Resources._checked;
+            else if (!ToutleMondeApayer && lUtilisateurAPAyeSapart) this.pictureBox1.Image = Properties.Resources.checked_warning;
+            else this.pictureBox1.Image = Properties.Resources.error;
+
+
+        }
+
+        #endregion
+
+        #region Public Methods
+
+
+
+        #endregion
 
         private void Avatar_Owner_Click(object sender, EventArgs e)
         {

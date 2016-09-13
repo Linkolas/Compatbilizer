@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Comptabilizer.Database.Objets
 {
-    class Magouille
+    public class Magouille
     {
         public int id = -1;
         public int id_facture = -1;
