@@ -26,6 +26,7 @@ namespace Comptabilizer.view.component
             {
                 fc = new FactureComponent();
                 fc.facture = f;
+				fc.Dock = DockStyle.Top;
                 FacContainerPanel.Controls.Add(fc);
             }
         }

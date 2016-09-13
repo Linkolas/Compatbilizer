@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,14 +31,14 @@ namespace Comptabilizer.Database.Requetes
 					+ f.id + ", "
 					+ f.id_payeur + ", "
 					+ f.valeur + ", "
-					+ DateTimeToTimestamp(f.date) + ", "
+					+ f.date.Date.ToString("yyyy-MM-dd HH:mm:ss") + ", "
 					+ "\"" + f.libelle + "\" "
 					+ ")";
 			} else {
 				requete = "INSERT INTO " + TABLE + " (id_payeur, valeur_totale, ddate, libelle) VALUES ("
 					+ f.id_payeur + ", "
 					+ f.valeur + ", "
-					+ DateTimeToTimestamp(f.date) + ", "
+					+ f.date.Date.ToString("yyyy-MM-dd HH:mm:ss") + ", "
 					+ "\"" + f.libelle + "\" "
 					+ ")";
 			}
@@ -59,7 +60,7 @@ namespace Comptabilizer.Database.Requetes
 					+ "id = " + f.id + ", "
 					+ "id_payeur = " + f.id_payeur + ", "
 					+ "valeur_totale = " + f.valeur + ", "
-					+ "ddate = " + DateTimeToTimestamp(f.date) + ", "
+					+ "ddate = " + f.date.Date.ToString("yyyy-MM-dd HH:mm:ss") + ", "
 					+ "libelle = \"" + f.libelle + "\" "
 					+ "WHERE id = " + id;
 
@@ -73,7 +74,7 @@ namespace Comptabilizer.Database.Requetes
 
 			f.id_payeur = (int) DRow["id_payeur"];
 			f.valeur = (float) DRow["valeur_totale"];
-			f.date = TimestampToDateTime((double) DRow["ddate"]);
+			f.date = (DateTime) DRow["ddate"];
 			f.libelle = (string) DRow["libelle"];
 			f.id = (int) DRow["id"];
 
@@ -227,18 +228,5 @@ namespace Comptabilizer.Database.Requetes
         }
 
         #endregion
-
-        #region Utility functions
-        private long DateTimeToTimestamp(DateTime dt) {
-			long epoch = (dt.Ticks - 621355968000000000) / 10000000;
-			return epoch;
-		}
-
-		private DateTime TimestampToDateTime(double timestamp) {
-			DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-			dtDateTime = dtDateTime.AddSeconds(timestamp).ToLocalTime();
-			return dtDateTime;
-		}
-		#endregion
 	}
 }

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Comptabilizer.utils
 {
-    public class Avatar
+    public static class Avatar
     {
 
         /// <summary>
         /// Cette classe ne peut être instancié utilisez 
         /// </summary>
-        private Avatar()
+        static Avatar()
         {
             initializeComponent();
         }
