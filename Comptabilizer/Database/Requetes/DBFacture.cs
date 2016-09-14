@@ -208,7 +208,7 @@ namespace Comptabilizer.Database.Requetes
         #endregion
 
         /// <summary>
-        /// Récupère toutes les factures d'une Personne
+        /// Récupère toutes les factures qu'une Personne a payée
         /// </summary>
         /// <returns>List d'objets</returns>
         public List<Facture> getAllFromPerson(Personne p)
@@ -227,6 +227,26 @@ namespace Comptabilizer.Database.Requetes
             return DTableToList(dt);
         }
 
-        #endregion
+		/// <summary>
+		/// Récupère toutes les factures d'une Personne
+		/// </summary>
+		/// <returns>List d'objets</returns>
+		public List<Facture> getAll_Concernant(int id_person) {
+			string requete =
+				  "SELECT " + TABLE + ".* "
+				+ "FROM " + TABLE + ", " + PREFIX + "facture_personne" + " "
+				+ "WHERE " + TABLE + ".id = " + PREFIX + "facture_personne" + ".id_facture "
+				+ "AND (id_payeur = " + id_person + " OR id_personne = " + id_person +")"
+				+ "GROUP BY id";
+
+			DataTable dt = SELECT(requete);
+			if (dt.Rows.Count < 1) {
+				return new List<Facture>();
+			}
+
+			return DTableToList(dt);
+		}
+
+		#endregion
 	}
 }
