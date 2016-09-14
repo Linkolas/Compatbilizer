@@ -15,10 +15,13 @@ namespace Comptabilizer.view.component
     public partial class FactureComponent : UserControl
     {
         private Facture f = null;
+        Color backGroundcolor;
+        bool MousseOver = false;
 
         public FactureComponent()
         {
             InitializeComponent();
+            backGroundcolor = panel5.BackColor;
         }
 
         #region ACCESSEURS
@@ -79,5 +82,20 @@ namespace Comptabilizer.view.component
         {
 
         }
+
+        private void panel5_MouseHover(object sender, EventArgs e)
+        {
+
+            //Au survole de la souris on change le background de facon smouth 
+            //A finir de coder
+            /*MousseOver = true;
+            while (MousseOver == true && panel5.BackColor.R < 120) {
+                panel5.BackColor = Color.FromArgb(panel5.BackColor.R + 0x01, panel5.BackColor.G + 0x01, panel5.BackColor.B + 0x01);
+
+            }*/
+        }
+
+
+
     }
 }

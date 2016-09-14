@@ -139,6 +139,7 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(827, 97);
             this.panel5.TabIndex = 0;
+            this.panel5.MouseHover += new System.EventHandler(this.panel5_MouseHover);
             // 
             // FactureComponent
             // 
