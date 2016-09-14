@@ -74,5 +74,10 @@ namespace Comptabilizer.view.component
         {
 
         }
+
+        private void FacName_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
