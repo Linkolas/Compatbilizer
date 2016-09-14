@@ -91,6 +91,12 @@
     <Compile Include="view\component\FactureComponent.Designer.cs">
       <DependentUpon>FactureComponent.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\component\Immeuble.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="view\component\Immeuble.Designer.cs">
+      <DependentUpon>Immeuble.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\component\Login.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\component\FactureComponent.resx">
       <DependentUpon>FactureComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\component\Immeuble.resx">
+      <DependentUpon>Immeuble.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\component\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -231,6 +240,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\checked_warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\house.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

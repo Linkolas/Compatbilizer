@@ -19,6 +19,15 @@ namespace Comptabilizer.view.component
             InitializeComponent();
         }
 
+        public void loadCategorie()
+        {
+            Immeuble I = null;
+            foreach (Categorie c in MySQL.Categorie.getAll())
+            {
+
+            }
+        }
+
         public void loadFactures()
         {
             FactureComponent fc = null;
