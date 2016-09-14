@@ -48,16 +48,16 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.DimGray;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(98, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1, 100);
+            this.panel1.Size = new System.Drawing.Size(1, 97);
             this.panel1.TabIndex = 1;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(1, 0);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(2, 100);
             this.panel2.TabIndex = 2;
@@ -131,6 +131,7 @@
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.Control;
             this.panel5.Controls.Add(this.panel3);
+            this.panel5.Controls.Add(this.panel1);
             this.panel5.Controls.Add(this.Avatar_Owner);
             this.panel5.Controls.Add(this.pictureBox1);
             this.panel5.Controls.Add(this.FacName);
@@ -146,7 +147,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Name = "FactureComponent";
             this.Size = new System.Drawing.Size(827, 100);
