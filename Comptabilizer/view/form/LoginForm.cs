@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,11 +16,22 @@ namespace Comptabilizer.view.form
 
 		Main mainForm = null;
 
+
+
         public LoginForm() {
             InitializeComponent();
 
 			// On gère l'évènement de connection réussie.
 			login1.ConnectionOK += Login1_ConnectionOK;
+        }
+
+       
+
+        public void readRegistery()
+        {
+            /*RegistryKey comptabilizer;
+            comptabilizer = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Comptabilizer");
+            comptabilizer.GetValue();*/
         }
 
 		/// <summary>
