@@ -17,7 +17,7 @@ namespace Comptabilizer.view.form
 		public delegate void InitialDataLoadedHandler();
 		public event InitialDataLoadedHandler InitialDataLoaded = delegate { };
 
-        private bool mousseDown = true;
+        private bool mousseDown = false;
         private Point firstPoint;
 
         public Main() {
@@ -43,6 +43,7 @@ namespace Comptabilizer.view.form
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
+            //Debug.WriteLine("MousseDown");
             mousseDown = true;
             firstPoint = e.Location;
         }
