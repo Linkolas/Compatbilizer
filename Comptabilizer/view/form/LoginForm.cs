@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Comptabilizer.utils;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,23 +16,42 @@ namespace Comptabilizer.view.form
     public partial class LoginForm : Form {
 
 		Main mainForm = null;
-
+        RegistryKey comptabilizer;
 
 
         public LoginForm() {
             InitializeComponent();
-
+            readRegistery();
 			// On gère l'évènement de connection réussie.
 			login1.ConnectionOK += Login1_ConnectionOK;
         }
 
-       
+        public void updateRegistery()
+        {
+            comptabilizer.SetValue("lastUserName", Session.Utilisateur.pseudo);
+            comptabilizer.SetValue("lastUserAvatar", Session.Utilisateur.avatar);
+
+        }
 
         public void readRegistery()
         {
-            /*RegistryKey comptabilizer;
-            comptabilizer = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Comptabilizer");
-            comptabilizer.GetValue();*/
+            comptabilizer = Registry.CurrentUser.OpenSubKey("Software");
+            string[] keys = comptabilizer.GetSubKeyNames();
+            //Comptabilizer existe dans le registre on fait que lire le registre et on met a jour la clé comptabilizer
+            if (keys.Contains("Comptabilizer"))
+            {
+                comptabilizer = comptabilizer.OpenSubKey("Comptabilizer");
+                this.login1.userBox.Text = (string)comptabilizer.GetValue("lastUserName", "");
+                this.login1.pictureBox1.Image = Avatar.image((string)comptabilizer.GetValue("lastUserAvatar", ""));
+            }
+            else // On ouvre Comptabilizer pour la premiere fois
+            {
+                using (var test = comptabilizer.CreateSubKey("Comptabilizer"))
+                {
+                    using (var test2 = comptabilizer = comptabilizer.OpenSubKey("Comptabilizer")) { }
+                }
+                
+            }
         }
 
 		/// <summary>
@@ -55,6 +75,9 @@ namespace Comptabilizer.view.form
 			mainForm.StartPosition = FormStartPosition.CenterParent;
 			mainForm.Show(this);
 
+            //On met a jour le registre pour la prochaine session
+            updateRegistery();
+
 			// On cache cette fenêtre.
 			// Il s'agit de la fenêtre principale, si on la ferme le logiciel entier est fermé.
 			this.Hide();
@@ -62,6 +85,11 @@ namespace Comptabilizer.view.form
 
 		private void pictureBox1_Click(object sender, EventArgs e) {
             this.Close();
+        }
+
+        private void login1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

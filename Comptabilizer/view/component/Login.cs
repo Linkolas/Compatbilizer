@@ -48,6 +48,8 @@ namespace Comptabilizer.view
 			}
 		}
 
+        
+
 		private void Login_ConnectionOK(Personne p) {
 			Debug.WriteLine("TODO : Afficher le chargement.");
 		}

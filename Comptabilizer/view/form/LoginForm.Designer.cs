@@ -65,6 +65,7 @@
             this.login1.Name = "login1";
             this.login1.Size = new System.Drawing.Size(500, 500);
             this.login1.TabIndex = 1;
+            this.login1.Load += new System.EventHandler(this.login1_Load);
             // 
             // LoginForm
             // 
