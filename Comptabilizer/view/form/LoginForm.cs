@@ -35,23 +35,14 @@ namespace Comptabilizer.view.form
 
         public void readRegistery()
         {
-            comptabilizer = Registry.CurrentUser.OpenSubKey("Software");
-            string[] keys = comptabilizer.GetSubKeyNames();
-            //Comptabilizer existe dans le registre on fait que lire le registre et on met a jour la clé comptabilizer
-            if (keys.Contains("Comptabilizer"))
-            {
-                comptabilizer = comptabilizer.OpenSubKey("Comptabilizer");
-                this.login1.userBox.Text = (string)comptabilizer.GetValue("lastUserName", "");
-                this.login1.pictureBox1.Image = Avatar.image((string)comptabilizer.GetValue("lastUserAvatar", ""));
+            comptabilizer = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("Comptabilizer");
+			
+            if (comptabilizer.ValueCount > 0) {
+                this.login1.userBox.Text = (string) comptabilizer.GetValue("lastUserName", "");
+                this.login1.pictureBox1.Image = Avatar.image((string) comptabilizer.GetValue("lastUserAvatar", ""));
+				this.login1.passwordBox.Select();
             }
-            else // On ouvre Comptabilizer pour la premiere fois
-            {
-                using (var test = comptabilizer.CreateSubKey("Comptabilizer"))
-                {
-                    using (var test2 = comptabilizer = comptabilizer.OpenSubKey("Comptabilizer")) { }
-                }
-                
-            }
+
         }
 
 		/// <summary>
