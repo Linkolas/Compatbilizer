@@ -20,7 +20,7 @@ namespace Comptabilizer.Database.Requetes {
 
 		#region Global Settings
 		/// <summary>Chaîne de connexion à la base SQL.</summary>
-		private string sql_connectstring = @"server=sql7.freemysqlhosting.net;uid=sql7135722;database=sql7135722;password=BNwwYT97Hx";
+		private string sql_connectstring = @"server=db4free.net;user id=comptabilizer;database=comptabilizer;password=comptabilizer";
 
 		/// <summary>Préfixe des tables en BDD</summary>
 		private string prefix = "compta_";
