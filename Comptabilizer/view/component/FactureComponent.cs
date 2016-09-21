@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Comptabilizer.Database.Objets;
 using Comptabilizer.utils;
+using Comptabilizer.view.form;
 
 namespace Comptabilizer.view.component
 {
@@ -95,7 +96,11 @@ namespace Comptabilizer.view.component
             }*/
         }
 
+        private void FactureComponent_Click(object sender, EventArgs e)
+        {
+            FactureFormcs ff = new FactureFormcs(this.facture);
+            ff.ShowDialog();
 
-
+        }
     }
 }

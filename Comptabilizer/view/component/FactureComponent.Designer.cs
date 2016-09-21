@@ -48,9 +48,10 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.DimGray;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(98, 0);
+            this.panel1.Location = new System.Drawing.Point(65, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1, 97);
+            this.panel1.Size = new System.Drawing.Size(1, 63);
             this.panel1.TabIndex = 1;
             // 
             // panel2
@@ -58,17 +59,19 @@
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(2, 100);
+            this.panel2.Size = new System.Drawing.Size(1, 65);
             this.panel2.TabIndex = 2;
             // 
             // FacName
             // 
             this.FacName.AutoSize = true;
             this.FacName.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FacName.Location = new System.Drawing.Point(104, 25);
+            this.FacName.Location = new System.Drawing.Point(69, 16);
+            this.FacName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.FacName.Name = "FacName";
-            this.FacName.Size = new System.Drawing.Size(131, 38);
+            this.FacName.Size = new System.Drawing.Size(89, 25);
             this.FacName.TabIndex = 3;
             this.FacName.Text = "FacName";
             this.FacName.Click += new System.EventHandler(this.FacName_Click);
@@ -77,10 +80,11 @@
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox1.Image = global::Comptabilizer.Properties.Resources._checked;
-            this.pictureBox1.Location = new System.Drawing.Point(727, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(484, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Padding = new System.Windows.Forms.Padding(10);
-            this.pictureBox1.Size = new System.Drawing.Size(100, 97);
+            this.pictureBox1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.pictureBox1.Size = new System.Drawing.Size(67, 63);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -90,9 +94,10 @@
             this.Avatar_Owner.Dock = System.Windows.Forms.DockStyle.Left;
             this.Avatar_Owner.Image = global::Comptabilizer.Properties.Resources.user;
             this.Avatar_Owner.Location = new System.Drawing.Point(0, 0);
+            this.Avatar_Owner.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Avatar_Owner.Name = "Avatar_Owner";
-            this.Avatar_Owner.Padding = new System.Windows.Forms.Padding(10);
-            this.Avatar_Owner.Size = new System.Drawing.Size(98, 97);
+            this.Avatar_Owner.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.Avatar_Owner.Size = new System.Drawing.Size(65, 63);
             this.Avatar_Owner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Avatar_Owner.TabIndex = 0;
             this.Avatar_Owner.TabStop = false;
@@ -102,18 +107,20 @@
             // 
             this.panel3.Controls.Add(this.Value);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(560, 0);
+            this.panel3.Location = new System.Drawing.Point(373, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(167, 97);
+            this.panel3.Size = new System.Drawing.Size(111, 63);
             this.panel3.TabIndex = 5;
             // 
             // Value
             // 
             this.Value.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Value.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Value.Location = new System.Drawing.Point(21, 26);
+            this.Value.Location = new System.Drawing.Point(14, 17);
+            this.Value.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Value.Name = "Value";
-            this.Value.Size = new System.Drawing.Size(127, 38);
+            this.Value.Size = new System.Drawing.Size(85, 25);
             this.Value.TabIndex = 0;
             this.Value.Text = "1000,00E";
             // 
@@ -123,8 +130,9 @@
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(827, 100);
+            this.panel4.Size = new System.Drawing.Size(551, 65);
             this.panel4.TabIndex = 6;
             // 
             // panel5
@@ -136,20 +144,23 @@
             this.panel5.Controls.Add(this.pictureBox1);
             this.panel5.Controls.Add(this.FacName);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 3);
+            this.panel5.Location = new System.Drawing.Point(0, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(827, 97);
+            this.panel5.Size = new System.Drawing.Size(551, 63);
             this.panel5.TabIndex = 0;
             this.panel5.MouseHover += new System.EventHandler(this.panel5_MouseHover);
             // 
             // FactureComponent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel4);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FactureComponent";
-            this.Size = new System.Drawing.Size(827, 100);
+            this.Size = new System.Drawing.Size(551, 65);
+            this.Click += new System.EventHandler(this.FactureComponent_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Avatar_Owner)).EndInit();
             this.panel3.ResumeLayout(false);
